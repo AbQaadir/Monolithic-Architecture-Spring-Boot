@@ -32,7 +32,7 @@ public class JobController {
     // get a job by id
     @GetMapping("/jobs/{id}")
     public ResponseEntity<Job> getJobById(@PathVariable long id) {
-        if(jobService.getJobById(id) == null) {
+        if (jobService.getJobById(id) == null) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(jobService.getJobById(id));
@@ -42,7 +42,7 @@ public class JobController {
     // Delete a job by id
     @DeleteMapping("/jobs/{id}")
     public ResponseEntity<String> deleteJob(@PathVariable long id) {
-        if(jobService.getJobById(id) == null) {
+        if (jobService.getJobById(id) == null) {
             return ResponseEntity.notFound().build();
         } else {
             jobService.deleteJob(id);
@@ -50,10 +50,10 @@ public class JobController {
         }
     }
 
-    // update a job by id
+    // update a job by id by ignoring the id by user sent
     @PutMapping("/jobs/{id}")
     public ResponseEntity<String> updateJob(@PathVariable long id, @RequestBody Job job) {
-        if(jobService.getJobById(id) == null) {
+        if (jobService.getJobById(id) == null) {
             return ResponseEntity.notFound().build();
         } else {
             jobService.updateJob(id, job);

@@ -10,5 +10,5 @@ public interface JobService {
 
     void deleteJob(long id);
 
-    void updateJob(long id, Job job);
+    boolean updateJob(long id, Job updatedJob);
 }

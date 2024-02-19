@@ -4,7 +4,6 @@ import com.example.ytpractice.job.Job;
 import com.example.ytpractice.job.JobService;
 import org.springframework.stereotype.Service;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,11 +40,18 @@ public class JobServiceIImpl implements JobService {
 
 
     @Override
-    public void updateJob(long id, Job job) {
-        for (int i = 0; i < jobs.size(); i++) {
-            if (jobs.get(i).getId() == id) {
-                jobs.set(i, job);
+    public boolean updateJob(long id, Job updatedJob){
+        for (Job job : jobs) {
+            if (job.getId() == id) {
+                job.setTitle(updatedJob.getTitle());
+                job.setDescription(updatedJob.getDescription());
+                job.setMinSalary(updatedJob.getMinSalary());
+                job.setMaxSalary(updatedJob.getMaxSalary());
+                job.setLocation(updatedJob.getLocation());
+                job.setPostedDate(updatedJob.getPostedDate());
+                return true;
             }
         }
+        return false;
     }
 }
