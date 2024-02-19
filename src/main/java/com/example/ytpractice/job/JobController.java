@@ -1,5 +1,6 @@
 package com.example.ytpractice.job;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,11 +32,11 @@ public class JobController {
 
     // get a job by id
     @GetMapping("/jobs/{id}")
-    public Job getJobById(@PathVariable long id) {
+    public ResponseEntity<Job> getJobById(@PathVariable long id) {
         if(jobService.getJobById(id) == null) {
-            return new Job(0, "Job not found", "Job not found", "Job not found", "Job not found", "Job not found", "Job not found");
+            return ResponseEntity.notFound().build();
         } else {
-            return jobService.getJobById(id);
+            return ResponseEntity.ok(jobService.getJobById(id));
         }
     }
 }
