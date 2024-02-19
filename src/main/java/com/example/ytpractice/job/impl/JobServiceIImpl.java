@@ -38,4 +38,14 @@ public class JobServiceIImpl implements JobService {
     public void deleteJob(long id) {
         jobs.removeIf(job -> job.getId() == id);
     }
+
+
+    @Override
+    public void updateJob(long id, Job job) {
+        for (int i = 0; i < jobs.size(); i++) {
+            if (jobs.get(i).getId() == id) {
+                jobs.set(i, job);
+            }
+        }
+    }
 }
