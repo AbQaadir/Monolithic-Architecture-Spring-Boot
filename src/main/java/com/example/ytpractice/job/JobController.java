@@ -2,7 +2,6 @@ package com.example.ytpractice.job;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 
@@ -19,15 +18,20 @@ public class JobController {
 
     // get all jobs
     @GetMapping("/jobs")
-    public List<Job> findAll() {
-        return jobService.findAll();
+    public ResponseEntity<Job> findAll() {
+        List<Job> jobs = jobService.findAll();
+        if (jobs.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok((Job) jobs);
+        }
     }
 
     // create a new job post mapping
     @PostMapping("/jobs")
-    public String createJob(@RequestBody Job job) {
+    public ResponseEntity<String> createJob(@RequestBody Job job) {
         jobService.creatJob(job);
-        return job + " has been added successfully";
+        return ResponseEntity.ok("Job created successfully");
     }
 
     // get a job by id
