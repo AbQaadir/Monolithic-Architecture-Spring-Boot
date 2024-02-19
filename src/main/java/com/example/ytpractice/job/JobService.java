@@ -7,4 +7,6 @@ public interface JobService {
     void creatJob(Job job);
 
     Job getJobById(long id);
+
+    void deleteJob(long id);
 }

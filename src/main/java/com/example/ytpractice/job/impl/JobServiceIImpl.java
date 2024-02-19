@@ -4,6 +4,7 @@ import com.example.ytpractice.job.Job;
 import com.example.ytpractice.job.JobService;
 import org.springframework.stereotype.Service;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,5 +32,10 @@ public class JobServiceIImpl implements JobService {
             }
         }
         return null;
+    }
+
+    @Override
+    public void deleteJob(long id) {
+        jobs.removeIf(job -> job.getId() == id);
     }
 }

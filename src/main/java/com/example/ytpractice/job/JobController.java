@@ -18,13 +18,8 @@ public class JobController {
 
     // get all jobs
     @GetMapping("/jobs")
-    public ResponseEntity<Job> findAll() {
-        List<Job> jobs = jobService.findAll();
-        if (jobs.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok((Job) jobs);
-        }
+    public ResponseEntity<List<Job>> findAll() {
+        return ResponseEntity.ok(jobService.findAll());
     }
 
     // create a new job post mapping
@@ -41,6 +36,17 @@ public class JobController {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(jobService.getJobById(id));
+        }
+    }
+
+    // Delete a job by id
+    @DeleteMapping("/jobs/{id}")
+    public ResponseEntity<String> deleteJob(@PathVariable long id) {
+        if(jobService.getJobById(id) == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            jobService.deleteJob(id);
+            return ResponseEntity.ok("Job deleted successfully");
         }
     }
 }
