@@ -1,6 +1,7 @@
 package com.example.ytpractice.company;
 
 import com.example.ytpractice.job.Job;
+import com.example.ytpractice.review.Review;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -19,15 +20,11 @@ public class Company {
     @JsonIgnore
     @OneToMany(mappedBy = "company")
     private List<Job> jobs;
+    @OneToMany(mappedBy = "company")
+    private List<Review> review;
 
     public Company() {
     }
-
-    public Company(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
-
 
     public long getId() {
         return id;
@@ -59,6 +56,14 @@ public class Company {
 
     public void setJobs(List<Job> jobs) {
         this.jobs = jobs;
+    }
+
+    public List<Review> getReview() {
+        return review;
+    }
+
+    public void setReview(List<Review> review) {
+        this.review = review;
     }
 
     @Override
