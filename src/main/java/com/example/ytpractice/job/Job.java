@@ -1,13 +1,28 @@
 package com.example.ytpractice.job;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "job_table")
 public class Job {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "job_title")
     private String title;
+    @Column(name = "job_description")
     private String description;
+    @Column(name = "min_salary")
     private String minSalary;
+    @Column(name = "max_salary")
     private String maxSalary;
+    @Column(name = "job_location")
     private String location;
+    @Column(name = "posted_date")
     private String postedDate;
+
+    public Job() {
+    }
 
     public Job(long id, String title, String description, String minSalary, String maxSalary, String location, String postedDate) {
         this.id = id;

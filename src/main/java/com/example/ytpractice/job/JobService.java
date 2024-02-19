@@ -8,7 +8,7 @@ public interface JobService {
 
     Job getJobById(long id);
 
-    void deleteJob(long id);
+    boolean deleteJob(long id);
 
     boolean updateJob(long id, Job updatedJob);
 }
