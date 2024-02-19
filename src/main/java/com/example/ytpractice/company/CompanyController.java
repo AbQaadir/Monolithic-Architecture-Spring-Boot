@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -53,11 +54,13 @@ public class CompanyController {
     // Update a company by id by ignoring the id by user sent
     @PutMapping("/{id}")
     public ResponseEntity<String> updateCompany(@PathVariable long id, @RequestBody Company company) {
-        if (companyService.getCompanyById(id) == null) {
-            return ResponseEntity.notFound().build();
-        } else {
+        Optional<Company> companyOptional = Optional.ofNullable(companyService.getCompanyById(id));
+
+        if (companyOptional.isPresent()) {
             companyService.updateCompany(id, company);
             return ResponseEntity.ok("Company updated successfully");
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 

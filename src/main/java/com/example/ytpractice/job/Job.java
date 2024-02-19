@@ -1,5 +1,6 @@
 package com.example.ytpractice.job;
 
+import com.example.ytpractice.company.Company;
 import jakarta.persistence.*;
 
 @Entity
@@ -20,6 +21,8 @@ public class Job {
     private String location;
     @Column(name = "posted_date")
     private String postedDate;
+    @ManyToOne
+    private Company company;
 
     public Job() {
     }
@@ -62,6 +65,10 @@ public class Job {
         return postedDate;
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -88,6 +95,10 @@ public class Job {
 
     public void setPostedDate(String postedDate) {
         this.postedDate = postedDate;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.ytpractice.company;
 
 import com.example.ytpractice.job.Job;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -9,15 +10,14 @@ import java.util.List;
 @Table(name = "companies")
 public class Company {
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "company_name")
     private String name;
     @Column(name = "company_description")
     private String description;
-
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy = "company")
     private List<Job> jobs;
 
     public Company() {
