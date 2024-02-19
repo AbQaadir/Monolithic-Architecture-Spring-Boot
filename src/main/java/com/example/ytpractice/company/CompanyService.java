@@ -3,8 +3,7 @@ package com.example.ytpractice.company;
 import java.util.List;
 
 public interface CompanyService {
-
-    List<Company> findAll();
+    List<Company> findAllCompanies();
 
     void createCompany(Company company);
 
@@ -13,6 +12,4 @@ public interface CompanyService {
     boolean deleteCompany(long id);
 
     boolean updateCompany(long id, Company updatedCompany);
-
-
 }

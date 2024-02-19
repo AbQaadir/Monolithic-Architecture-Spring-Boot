@@ -6,6 +6,7 @@ import com.example.ytpractice.company.CompanyService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
@@ -17,7 +18,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public List<Company> findAll() {
+    public List<Company> findAllCompanies() {
         return companyRepository.findAll();
     }
 
@@ -42,9 +43,16 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public boolean updateCompany(long id, Company updatedCompany) {
-        if (companyRepository.existsById(id)) {
-            updatedCompany.setId(id);
-            companyRepository.save(updatedCompany);
+        Optional<Company> companyOptional = companyRepository.findById(id);
+
+        if (companyOptional.isPresent()) {
+
+            Company company = companyOptional.get();
+            company.setName(updatedCompany.getName());
+            company.setDescription(updatedCompany.getDescription());
+            company.setJobs(updatedCompany.getJobs());
+
+            companyRepository.save(company);
             return true;
         }
         return false;

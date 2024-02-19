@@ -3,7 +3,6 @@ package com.example.ytpractice.company;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -18,8 +17,8 @@ public class CompanyController {
     }
 
      @GetMapping
-     public ResponseEntity<List<Company>> findAll() {
-        return ResponseEntity.ok(companyService.findAll());
+     public ResponseEntity<List<Company>> findAllCompanies() {
+        return ResponseEntity.ok(companyService.findAllCompanies());
      }
 
      // Create a new company
