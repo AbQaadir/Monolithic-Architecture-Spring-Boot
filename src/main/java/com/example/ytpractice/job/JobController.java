@@ -32,6 +32,10 @@ public class JobController {
     // get a job by id
     @GetMapping("/jobs/{id}")
     public Job getJobById(@PathVariable long id) {
-        return jobService.getJobById(id);
+        if(jobService.getJobById(id) == null) {
+            return new Job(0, "Job not found", "Job not found", "Job not found", "Job not found", "Job not found", "Job not found");
+        } else {
+            return jobService.getJobById(id);
+        }
     }
 }
