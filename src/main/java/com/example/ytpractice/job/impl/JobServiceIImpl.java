@@ -22,4 +22,14 @@ public class JobServiceIImpl implements JobService {
         job.setId(++nextId);
         jobs.add(job);
     }
+
+    @Override
+    public Job getJobById(long id) {
+        for (Job job : jobs) {
+            if (job.getId() == id) {
+                return job;
+            }
+        }
+        return null;
+    }
 }
