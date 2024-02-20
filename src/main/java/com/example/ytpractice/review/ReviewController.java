@@ -30,4 +30,13 @@ public class ReviewController {
 		}
 		return ResponseEntity.badRequest().body("Company not found");
 	}
+
+	@GetMapping("/reviews/{reviewId}")
+	public ResponseEntity<Review> getReviewById(@PathVariable Long companyId, @PathVariable Long reviewId) {
+		Review review = reviewService.getReviewById(companyId, reviewId);
+		if (review != null) {
+			return ResponseEntity.ok(review);
+		}
+		return ResponseEntity.notFound().build();
+	}
 }

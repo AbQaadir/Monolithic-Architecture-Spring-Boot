@@ -27,15 +27,6 @@ public class Job {
     public Job() {
     }
 
-    public Job(long id, String title, String description, String minSalary, String maxSalary, String location, String postedDate) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.minSalary = minSalary;
-        this.maxSalary = maxSalary;
-        this.location = location;
-        this.postedDate = postedDate;
-    }
 
     public long getId() {
         return id;

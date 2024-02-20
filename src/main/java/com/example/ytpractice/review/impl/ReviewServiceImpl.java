@@ -38,4 +38,9 @@ public class ReviewServiceImpl implements ReviewService {
 
 		return false;
 	}
+
+	@Override
+	public Review getReviewById(Long companyId, Long reviewId) {
+		return reviewRepository.findByIdAndCompanyId(reviewId, companyId);
+	}
 }
