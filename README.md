@@ -1,1 +1,1 @@
-# yt-practice-spring-boot
+# Monolithic-Architecture
